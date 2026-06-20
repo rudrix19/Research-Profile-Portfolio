@@ -1,34 +1,28 @@
 import React from 'react';
-import { Github, Linkedin, GraduationCap, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 
 const socials = [
   {
     Icon: Github,
-    href: '#',
+    href: 'https://github.com/rudrix19',
     label: 'GitHub',
     testId: 'social-github'
   },
   {
     Icon: Linkedin,
-    href: '#',
+    href: 'https://www.linkedin.com/in/rudrix-19-iiserp/',
     label: 'LinkedIn',
     testId: 'social-linkedin'
   },
   {
-    Icon: GraduationCap,
-    href: '#',
-    label: 'Google Scholar',
-    testId: 'social-scholar'
-  },
-  {
-    Icon: Twitter,
-    href: '#',
-    label: 'Twitter',
-    testId: 'social-twitter'
+    Icon: Instagram,
+    href: 'https://www.instagram.com/cosmic_cognoscente/',
+    label: 'Instagram',
+    testId: 'social-instagram'
   },
   {
     Icon: Mail,
-    href: 'mailto:placeholder@iiserpune.ac.in',
+    href: 'mailto:rudra.sahu@students.iiserpune.ac.in',
     label: 'Email',
     testId: 'social-email'
   }

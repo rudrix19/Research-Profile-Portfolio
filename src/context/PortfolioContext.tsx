@@ -226,18 +226,13 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     return defaultProfileData;
   });
 
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const isEditing = false;
+  const setIsEditing = () => {};
+  const resetToDefault = () => {};
 
   useEffect(() => {
     localStorage.setItem('portfolio_data', JSON.stringify(data));
   }, [data]);
-
-  const resetToDefault = () => {
-    if (confirm("Are you sure you want to restore the default content? This will erase your current customizations.")) {
-      setData(defaultProfileData);
-      setIsEditing(false);
-    }
-  };
 
   return (
     <PortfolioContext.Provider value={{ data, setData, isEditing, setIsEditing, resetToDefault }}>

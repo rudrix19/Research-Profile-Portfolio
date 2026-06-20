@@ -453,25 +453,23 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16">
-            <div className="md:col-span-5">
+            <div className="md:col-span-12">
               <p className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90">
                 ✦ 002 / Explore
               </p>
               <h2 className="font-serif-display text-5xl sm:text-6xl text-slate-100 mt-6 font-light tracking-tight">
-                Three
+                Two
                 <br />
                 <span className="italic text-slate-400">trajectories.</span>
               </h2>
-            </div>
-            <div className="md:col-span-7 flex items-end">
-              <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-lg">
-                Projects I’ve been tinkering with, what life at IISER Pune has looked like, and the school days that quietly set the rest in motion.
+              <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-lg mt-4">
+                Selected projects in astrophysics and quantum mechanics, alongside research chapters and campus life at IISER Pune.
               </p>
             </div>
           </div>
 
-          {/* Three columns grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10">
+          {/* Two columns grid layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10">
             {[
               {
                 to: "/projects",
@@ -488,14 +486,6 @@ export default function Home() {
                 desc: "Clubs, courses, conversations and quiet chapters.",
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Front_view_of_main_building%2C_IISER_Pune.jpg/1280px-Front_view_of_main_building%2C_IISER_Pune.jpg",
                 testId: "card-iiser"
-              },
-              {
-                to: "/school",
-                label: "A bit about school days",
-                tag: "03 · Origin",
-                desc: "Where the curiosity started, slowly and stubbornly.",
-                img: "https://images.pexels.com/photos/23522893/pexels-photo-23522893.png",
-                testId: "card-school"
               }
             ].map((c, i) => (
               <motion.div

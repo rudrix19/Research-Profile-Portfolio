@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Edit, Sliders } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { usePortfolio } from '../context/PortfolioContext';
 
 const links = [
   { to: '/', label: 'Home', testId: 'nav-home' },
   { to: '/projects', label: 'Projects', testId: 'nav-projects' },
-  { to: '/iiser', label: 'At IISER', testId: 'nav-iiser' },
-  { to: '/school', label: 'At School', testId: 'nav-school' }
+  { to: '/iiser', label: 'At IISER', testId: 'nav-iiser' }
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
-  const { isEditing, setIsEditing, resetToDefault } = usePortfolio();
 
   return (
     <header
@@ -59,36 +56,10 @@ export default function Navbar() {
               );
             })}
           </nav>
-
-          <div className="h-4 w-[1px] bg-white/10 mx-1" />
-
-          <button
-            onClick={() => setIsEditing(!isEditing)}
-            className={`font-mono-tag text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 border transition-all duration-300 flex items-center gap-2 ${
-              isEditing
-                ? 'bg-white text-[#050505] border-white font-medium shadow-[0_0_12px_rgba(255,255,255,0.4)]'
-                : 'text-zinc-400 border-white/10 hover:border-cyan-400/40 hover:text-cyan-300 hover:shadow-[0_0_10px_rgba(34,211,238,0.2)]'
-            }`}
-          >
-            <Sliders size={11} className={isEditing ? 'animate-pulse' : 'group-hover:rotate-12 transition-transform'} />
-            {isEditing ? 'Editing' : 'Customize'}
-          </button>
         </div>
 
-        {/* Mobile menu and edit toggle buttons */}
+        {/* Mobile menu and button */}
         <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => setIsEditing(!isEditing)}
-            className={`font-mono-tag text-[9px] tracking-[0.2em] uppercase px-2 py-1 border transition-all duration-200 flex items-center gap-1.5 ${
-              isEditing
-                ? 'bg-white text-[#050505] border-white font-medium'
-                : 'text-zinc-400 border-white/10 hover:border-white/40 hover:text-white'
-            }`}
-          >
-            <Edit size={10} />
-            {isEditing ? 'Save' : 'Edit'}
-          </button>
-
           <button
             data-testid="mobile-menu-toggle"
             onClick={() => setOpen((v) => !v)}
