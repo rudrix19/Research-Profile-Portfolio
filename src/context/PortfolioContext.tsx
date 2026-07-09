@@ -21,7 +21,7 @@ const defaultProfileData: ProfileData = {
       summary: "• Investigating the optical cavities and interferometry used in gravitational-wave observatories such as LIGO, with a focus on understanding the physics behind precision measurements.\n• Working through the design and behaviour of resonant optical systems, exploring how different cavity configurations affect beam properties and system performance.\n• Building simulations using Finesse 3 to study cavity dynamics, model interferometric systems, and develop intuition for the techniques used in modern gravitational-wave detection experiments",
       tags: ["Gravitational Waves", "Interferometry", "Physics", "Finesse 3"],
       year: "May 2026 - Present",
-      img: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?crop=entropy&cs=srgb&fm=jpg",
+      img: "/interferometry.png",
       githubUrl: "https://github.com/rudrix19/Interferometry.git"
     },
     {
@@ -31,7 +31,7 @@ const defaultProfileData: ProfileData = {
       summary: "• Gained hands-on experience with Python and key scientific libraries (NumPy, Pandas, Matplotlib, Astropy, SciPy), LaTeX typesetting, basic web development for scientific outreach, and academic CV creation.\n• Engaged in extensive tutorials on exoplanet detection methods, exoplanetary atmospheric science, use of the NASA Exoplanet Archive, and TESS mission data",
       tags: ["Astrophysics", "Python", "Exoplanets", "TESS"],
       year: "July 2025 - August 2025",
-      img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=srgb&fm=jpg&ixid=M204NTExOHwwfDF8c2VhcmNofDExfHxhc3Ryb25vbXl8ZW58MHx8fHwxNjg2MDA1Njk5&force=true",
+      img: "/intro2astro.png",
       githubUrl: "https://github.com/rudrix19/Intro2Astro_2025.git"
     },
     {
@@ -41,7 +41,7 @@ const defaultProfileData: ProfileData = {
       summary: "• Received hands-on training in computational astronomy, covering heliophysics, stellar and galactic astrophysics, exoplanet detection, cosmology, and multi-messenger astronomy through data-driven projects in Python.\n• Worked with astronomical datasets using Astropy, Pandas, and SunPy to analyse phenomena including stellar clusters, Cepheid variables, X-ray binaries, black-hole jets, solar observations, and Hubble-law measurements, developing practical experience in astronomical data analysis and modelling",
       tags: ["Computational Astronomy", "Python", "Astropy", "Data Analysis"],
       year: "December 2024 - January 2025",
-      img: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw3NTY2NzV8MHwxfHNlYXJjaHw0fHxjb3Ntb2xvZ3l8ZW58MHx8fHwxNzgxODg2Nzk5",
+      img: "/astrocalc.png",
       githubUrl: "https://github.com/rudrix19/Astronomical_Calculations.git"
     }
   ],
@@ -50,7 +50,8 @@ const defaultProfileData: ProfileData = {
       iconName: "Sparkles",
       title: "HELICASE",
       body: "Spent the 2025–26 session coordinating HELICASE at The Science Club, IISER Pune, which mostly meant juggling ideas, deadlines, layouts, contributors, and occasional chaos until two full editions finally came together. Do check them out!",
-      img: "",
+      img: "/helicase.png",
+      link: "https://sites.google.com/view/scienceclubiiserp/helicase",
       years: [
         {
           year: "Spring '26",
@@ -66,7 +67,8 @@ const defaultProfileData: ProfileData = {
       iconName: "BookOpen",
       title: "Mimamsa",
       body: "One of the most intellectually fulfilling experiences has been working with the Mimamsa team, helping shape the theme, visual feel, and execution of India's flagship science challenge.",
-      img: "",
+      img: "/mimamsa.png",
+      link: "https://www.mimamsa.info/",
       years: [
         {
           year: "MIMamsa '26",
@@ -79,10 +81,26 @@ const defaultProfileData: ProfileData = {
       ]
     },
     {
+      iconName: "Telescope",
+      title: "IISER Pune Kho-Kho League",
+      body: "I helped coordinate the IISER Pune Kho-Kho League (IKL) across seasons, organizing matches, handling team management, and bringing the campus community together around a shared love for high-energy sports.",
+      img: "/ikl.png",
+      years: [
+        {
+          year: "IKL '26",
+          body: "Coordinated the IKL '26 edition, managing the overall schedule, teams, refereeing panels, and orchestrating a competitive tournament that engaged over 100 student athletes."
+        },
+        {
+          year: "IKL '25",
+          body: "I coordinated the IKL '25 tournament, organizing matches, handling team management, and bringing the community together around a shared love for sports."
+        }
+      ]
+    },
+    {
       iconName: "Users",
       title: "Bijoya",
       body: "Being part of the Bengali community at IISER Pune, I’ve helped organize and perform in Bijoya celebrations during Durga Puja.",
-      img: "https://drive.google.com/uc?export=view&id=1VNLdL5cT9eQ32Z53DbNsQvmVzNi5ouhs",
+      img: "/bijoya.png",
       years: [
         {
           year: "Bijoya '25",
@@ -98,7 +116,7 @@ const defaultProfileData: ProfileData = {
       iconName: "Activity",
       title: "Navarasa",
       body: "Sometimes, movement says what words can’t. With Navarasa, I’ve had the joy of performing in various cultural events on campus.",
-      img: "",
+      img: "/navarasa.png",
       years: [
         {
           year: "NAVARASA '25",
@@ -114,7 +132,8 @@ const defaultProfileData: ProfileData = {
       iconName: "MapPin",
       title: "Inter-IISER Sports Meet (IISM)",
       body: "Represented IISER Pune in Kho-Kho, bagging 3rd place overall in back-to-back years of intense team competition, camaraderie, and team spirit.",
-      img: "",
+      img: "/iism.png",
+      link: "https://www.instagram.com/khokho_iiserp/",
       years: [
         {
           year: "IISM '25",
@@ -130,25 +149,21 @@ const defaultProfileData: ProfileData = {
       iconName: "Atom",
       title: "SCIENCE CLUB '25",
       body: "Coordinated the Science Club in 2025, facilitating dynamic scientific outreach, student research presentations, evening seminars, and interactive experiments that brought foundational science to life.",
-      img: ""
+      img: "/scienceclub.png",
+      link: "https://sites.google.com/view/scienceclubiiserp/home"
     },
     {
       iconName: "Sparkles",
       title: "Art Club",
       body: "While not a regular member, I’ve occasionally participated in Art Club activities. Sketching, painting, or just being around other creative people has helped me find pockets of calm and expression amidst packed academic weeks.",
-      img: ""
+      img: "/artclub.png"
     },
     {
       iconName: "Orbit",
       title: "Maths club",
       body: "I also volunteered during the Pi Week celebrations organized by the Maths Club, helping with event coordination and problem-setting. It was fun to engage with mathematics in a more playful, community-driven context.",
-      img: ""
-    },
-    {
-      iconName: "Telescope",
-      title: "IKL '25",
-      body: "I coordinated the IKL tournament, organizing matches, handling team management, and bringing the community together around a shared love for sports.",
-      img: ""
+      img: "/mathclub.png",
+      link: "https://sites.google.com/sac.iiserpune.ac.in/mathsclubiiserpune/home"
     }
   ],
   chapters: [
@@ -176,7 +191,8 @@ const defaultProfileData: ProfileData = {
   linkedinUrl: "#",
   scholarUrl: "#",
   twitterUrl: "#",
-  cvUrl: "https://drive.google.com/file/d/1crz5MkCDHv3n_mytLDIJXtR_lhAFKBnA/view?usp=sharing"
+  cvUrl: "/CV_RudraSahu.pdf",
+  profileImg: "/me.png"
 };
 
 interface PortfolioContextType {
@@ -203,20 +219,65 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
         if (!parsed.moments || parsed.moments.length <= 4 || !parsed.moments.some((m: any) => m.years !== undefined)) {
           parsed.moments = defaultProfileData.moments;
         }
-        // Force upgrade the image for Bijoya if it's currently empty, to ensure the new image shows up even if localState is cached
-        if (parsed.moments && parsed.moments.length > 0) {
-          const bijoya = parsed.moments.find((m: any) => m.title === "Bijoya");
-          if (bijoya && !bijoya.img) {
-            bijoya.img = "https://drive.google.com/uc?export=view&id=1VNLdL5cT9eQ32Z53DbNsQvmVzNi5ouhs";
-          }
+        // Force upgrade moments if they still have the old IKL title
+        if (parsed.moments && parsed.moments.some((m: any) => m.title === "IKL '25")) {
+          parsed.moments = defaultProfileData.moments;
         }
-        // Force upgrade projects if they don't have exactly the 3 requested projects
-        if (!parsed.projects || parsed.projects.length !== 3 || !parsed.projects.some((p: any) => p.title.includes("Intro2Astro")) || !parsed.projects.some((p: any) => p.title.includes("Winter School"))) {
+        // Force upgrade moments to use the newly uploaded local PNG files
+        if (parsed.moments && parsed.moments.length > 0 && !parsed.moments.some((m: any) => m.img && m.img.endsWith('.png'))) {
+          parsed.moments = defaultProfileData.moments;
+        }
+        // Force upgrade moments if they are not in the new-to-old order (where index 2 is IISER Pune Kho-Kho League)
+        if (parsed.moments && parsed.moments.length > 2 && parsed.moments[2].title !== "IISER Pune Kho-Kho League") {
+          parsed.moments = defaultProfileData.moments;
+        }
+        if (parsed.moments && parsed.moments.length > 0) {
+          // Merge links and ensure correct image paths for default moments
+          parsed.moments = parsed.moments.map((m: any) => {
+            const defaultM = defaultProfileData.moments.find((dm: any) => dm.title.toLowerCase() === m.title.toLowerCase());
+            if (defaultM) {
+              return {
+                ...m,
+                link: defaultM.link || m.link,
+                img: defaultM.img || m.img,
+                // also match up years sub-images if they are defaults
+                years: m.years?.map((y: any, idx: number) => ({
+                  ...y,
+                  img: defaultM.years?.[idx]?.img || y.img
+                })) || m.years
+              };
+            }
+            return m;
+          });
+        }
+        // Force upgrade projects if they don't have exactly the 3 requested projects or still use unsplash links for projects
+        if (!parsed.projects || parsed.projects.length !== 3 || !parsed.projects.some((p: any) => p.title.includes("Intro2Astro")) || !parsed.projects.some((p: any) => p.title.includes("Winter School")) || parsed.projects.some((p: any) => p.img.includes("unsplash.com"))) {
           parsed.projects = defaultProfileData.projects;
         }
+
+        // Always sort projects from newest to oldest (e.g. 2026, then 2025, then 2024)
+        if (parsed.projects && parsed.projects.length > 0) {
+          parsed.projects.sort((a: any, b: any) => {
+            const getYear = (yearStr: string) => {
+              const match = yearStr.match(/\b(202\d)\b/);
+              return match ? parseInt(match[1]) : 0;
+            };
+            return getYear(b.year) - getYear(a.year);
+          });
+          
+          // Re-assign correct sequential IDs after sorting (01, 02, 03)
+          parsed.projects = parsed.projects.map((p: any, idx: number) => ({
+            ...p,
+            id: String(idx + 1).padStart(2, '0')
+          }));
+        }
         // Force upgrade CV link
-        if (!parsed.cvUrl || parsed.cvUrl.includes("#")) {
+        if (!parsed.cvUrl || parsed.cvUrl.includes("#") || parsed.cvUrl.includes("drive.google.com")) {
           parsed.cvUrl = defaultProfileData.cvUrl;
+        }
+        // Force upgrade profileImg to use me.png
+        if (!parsed.profileImg) {
+          parsed.profileImg = "/me.png";
         }
         return parsed;
       } catch (e) {

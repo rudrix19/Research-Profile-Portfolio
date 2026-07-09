@@ -3,18 +3,21 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowUpRight, Atom, Orbit, Telescope, Plus, Trash2, Image, Download } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
+import ImageUpload from '../components/ImageUpload';
 
-// Animation variants matching elegant design preset
+// Animation variants matching elegant design preset with a premium cinematic blur-fade
 const fadeUp = {
   hidden: {
     opacity: 0,
-    y: 24
+    y: 24,
+    filter: "blur(8px)"
   },
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
-      duration: 0.8,
+      duration: 0.9,
       delay: i * 0.08,
       ease: [0.22, 1, 0.36, 1]
     }
@@ -102,10 +105,16 @@ export default function Home() {
                 className="font-serif-display text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] leading-[0.95] tracking-tight font-light text-slate-100 mt-6"
               >
                 {data.name.split(' ').map((word, idx, arr) => (
-                  <span key={idx} className={`block ${idx > 0 ? 'italic text-slate-200/95 font-light' : ''}`}>
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, y: 20, filter: "blur(12px)", scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+                    transition={{ duration: 1.1, delay: 0.1 + idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    className={`block ${idx > 0 ? 'italic text-slate-200/95 font-light' : ''}`}
+                  >
                     {word}
                     {idx === arr.length - 1 && <span className="text-cyan-400 inline-block not-italic">.</span>}
-                  </span>
+                  </motion.span>
                 ))}
               </motion.h1>
             )}
@@ -199,9 +208,9 @@ export default function Home() {
 
           {/* Hero Side Column (Universe Visual) */}
           <motion.div
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 1.04, filter: "blur(16px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-5 relative"
           >
             <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-slate-950/20 backdrop-blur-sm">
@@ -252,14 +261,56 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
           
           <div className="md:col-span-4">
-            <p className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90">
+            {/* Profile Picture Display / Upload Control */}
+            <div className="mb-8">
+              {isEditing ? (
+                <div className="space-y-2">
+                  <label className="block text-[8px] font-mono-tag text-zinc-500 uppercase tracking-widest mb-1.5 font-semibold">Profile Picture</label>
+                  <ImageUpload
+                    value={data.profileImg || '/me.png'}
+                    onChange={(val) => updateProp('profileImg', val)}
+                    placeholder="Upload profile photo"
+                  />
+                </div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative group w-48 sm:w-56 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/40 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-xl" />
+                  <img
+                    src={data.profileImg || '/me.png'}
+                    alt={data.name}
+                    className="w-full h-auto rounded-xl grayscale-[20%] hover:grayscale-0 contrast-[102%] brightness-[95%] hover:brightness-100 transition-all duration-700 scale-100 hover:scale-[1.03]"
+                    referrerPolicy="no-referrer"
+                  />
+                </motion.div>
+              )}
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90"
+            >
               ✦ 001 / About
-            </p>
-            <h2 className="font-serif-display text-5xl sm:text-6xl text-slate-100 mt-6 font-light tracking-tight">
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-serif-display text-5xl sm:text-6xl text-slate-100 mt-6 font-light tracking-tight"
+            >
               About
               <br />
               <span className="italic text-slate-400">me</span>
-            </h2>
+            </motion.h2>
 
             {/* Editable micro interests indicators */}
             <div className="mt-10 space-y-4">
@@ -269,8 +320,12 @@ export default function Home() {
                 {data.interests.map((label, idx) => {
                   const Icon = getInterestIconByLabel(label);
                   return (
-                    <div
+                    <motion.div
                       key={idx}
+                      initial={{ opacity: 0, x: -12, filter: "blur(6px)" }}
+                      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.7, delay: idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
                       data-testid={`interest-${label.toLowerCase().replace(/\s+/g, "-")}`}
                       className="flex items-center justify-between group"
                     >
@@ -290,7 +345,7 @@ export default function Home() {
                           <Trash2 size={11} />
                         </button>
                       )}
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
@@ -351,10 +406,10 @@ export default function Home() {
                     </div>
                   ) : (
                     <motion.p
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 16, filter: "blur(5px)" }}
+                      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                       viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.8, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                       className={`text-slate-300 leading-[1.85] ${
                         i === 0
                           ? "text-lg sm:text-xl font-serif-display italic text-slate-200"
@@ -372,14 +427,18 @@ export default function Home() {
             <div className="mt-12 pt-6 border-t border-white/5">
               <span className="block text-[9px] font-mono-tag uppercase tracking-[0.2em] text-zinc-500 mb-3">Key Associations</span>
               <div className="flex flex-wrap gap-3">
-                {["Science Club", "Mimamsa", "Kho-Kho", "IISER Pune"].map((t) => (
-                  <span
+                {["Science Club", "Mimamsa", "Kho-Kho", "IISER Pune"].map((t, idx) => (
+                  <motion.span
                     key={t}
+                    initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
+                    whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                     data-testid={`tag-${t.toLowerCase().replace(/\s+/g, "-")}`}
                     className="font-mono-tag text-[10px] tracking-[0.25em] uppercase text-slate-400 border border-white/10 hover:border-cyan-500/30 hover:text-cyan-300 transition-colors duration-300 px-3 py-1.5"
                   >
                     {t}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </div>
@@ -392,20 +451,38 @@ export default function Home() {
       <section className="relative py-24 sm:py-32 border-t border-white/10 bg-zinc-950/20">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
           <div className="md:col-span-4">
-            <p className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90">
+            <motion.p
+              initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90"
+            >
               ✦ Recognition
-            </p>
-            <h2 className="font-serif-display text-5xl sm:text-6xl text-slate-100 mt-6 font-light tracking-tight">
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-serif-display text-5xl sm:text-6xl text-slate-100 mt-6 font-light tracking-tight"
+            >
               Awards &
               <br />
               <span className="italic text-slate-400">Scholarships</span>
-            </h2>
-            <p className="text-slate-400 text-sm mt-5 leading-relaxed max-w-xs">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12, filter: "blur(5px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="text-slate-400 text-sm mt-5 leading-relaxed max-w-xs"
+            >
               Exceptional recognitions and support systems awarded throughout my undergraduate journey, supporting and encouraging active scientific studies and research potential.
-            </p>
+            </motion.p>
           </div>
 
-          <div className="md:col-span-8 md:pl-10 border-l border-white/5 space-y-12 animate-pulse-subtle">
+          <div className="md:col-span-8 md:pl-10 border-l border-white/5 space-y-12">
             {[
               {
                 title: "INSPIRE - DST Scholarship",
@@ -422,10 +499,10 @@ export default function Home() {
             ].map((award, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative"
               >
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 border-b border-white/5 pb-2 mb-3">
@@ -454,17 +531,35 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16">
             <div className="md:col-span-12">
-              <p className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90">
+              <motion.p
+                initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90"
+              >
                 ✦ 002 / Explore
-              </p>
-              <h2 className="font-serif-display text-5xl sm:text-6xl text-slate-100 mt-6 font-light tracking-tight">
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="font-serif-display text-5xl sm:text-6xl text-slate-100 mt-6 font-light tracking-tight"
+              >
                 Two
                 <br />
                 <span className="italic text-slate-400">trajectories.</span>
-              </h2>
-              <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-lg mt-4">
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 12, filter: "blur(5px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-lg mt-4"
+              >
                 Selected projects in astrophysics and quantum mechanics, alongside research chapters and campus life at IISER Pune.
-              </p>
+              </motion.p>
             </div>
           </div>
 
@@ -490,10 +585,10 @@ export default function Home() {
             ].map((c, i) => (
               <motion.div
                 key={c.to}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 35, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, delay: i * 0.1 }}
+                transition={{ duration: 0.9, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="h-full"
               >
                 <Link

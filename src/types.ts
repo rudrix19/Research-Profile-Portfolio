@@ -17,6 +17,7 @@ export interface Moment {
   iconName: 'Users' | 'BookOpen' | 'Activity' | 'MapPin' | 'Sparkles' | 'Atom' | 'Orbit' | 'Telescope';
   img?: string;
   years?: Array<{ year: string; body: string; img?: string }>;
+  link?: string;
 }
 
 export interface Chapter {
@@ -44,4 +45,5 @@ export interface ProfileData {
   scholarUrl: string;
   twitterUrl: string;
   cvUrl?: string;
+  profileImg?: string;
 }

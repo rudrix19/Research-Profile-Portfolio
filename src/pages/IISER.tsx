@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Users, BookOpen, Activity, Sparkles, Atom, Orbit, Telescope, Plus, Trash2, Edit2, Image, Search, GraduationCap } from 'lucide-react';
+import { MapPin, Users, BookOpen, Activity, Sparkles, Atom, Orbit, Telescope, Plus, Trash2, Edit2, Image, Search, GraduationCap, ExternalLink } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { Moment } from '../types';
 import ImageUpload from '../components/ImageUpload';
@@ -18,51 +18,17 @@ const iconMap = {
 
 const semestersData = [
   {
-    id: "sem-1",
-    label: "Semester 1",
-    tagline: "Foundational biology, chemistry, calculus, mechanics & labs",
-    status: "Completed",
+    id: "sem-5",
+    label: "Semester 5",
+    tagline: "Electrodynamics, advanced quantum mechanics, optics & electronics",
+    status: "Ongoing",
     courses: [
-      { name: "Introductory Biology", category: "Biology" },
-      { name: "Experimental Biology", category: "Biology" },
-      { name: "Principles of Organic Chemistry", category: "Chemistry" },
-      { name: "Evolution of Earth and Life", category: "ECS" },
-      { name: "Calculus I", category: "Math" },
-      { name: "Introductory Mechanics", category: "Physics" },
-      { name: "Physics Lab", category: "Physics" },
-      { name: "Introduction to Computing", category: "Transdisciplinary" }
-    ]
-  },
-  {
-    id: "sem-2",
-    label: "Semester 2",
-    tagline: "Biomolecules, physical chemistry, general labs, linear algebra & electives",
-    status: "Completed",
-    courses: [
-      { name: "Introduction to Biomolecules", category: "Biology" },
-      { name: "Principles of Physical Chemistry", category: "Chemistry" },
-      { name: "General Chemistry Practicals I", category: "Chemistry" },
-      { name: "The Solid Earth", category: "ECS" },
-      { name: "Science and Society", category: "HSS" },
-      { name: "Calculus II", category: "Math" },
-      { name: "Linear Algebra", category: "Math" },
-      { name: "Introductory Electricity & Magnetism", category: "Physics" }
-    ]
-  },
-  {
-    id: "sem-3",
-    label: "Semester 3",
-    tagline: "Ecology, probability, quantum physics, inorganic chemistry & climate",
-    status: "Completed",
-    courses: [
-      { name: "Ecology and Evolution", category: "Biology" },
-      { name: "Principles of Inorganic Chemistry", category: "Chemistry" },
-      { name: "Introduction to Probability", category: "Math" },
-      { name: "Introductory Quantum Mechanics", category: "Physics" },
-      { name: "Introduction to Climate Science", category: "ECS" },
-      { name: "Introduction to HSS", category: "HSS" },
-      { name: "General Chemistry Practicals II", category: "Chemistry" },
-      { name: "Mathematical Methods for Physics", category: "Physics" }
+      { name: "Electrodynamics I", category: "Physics" },
+      { name: "Quantum Mechanics I", category: "Physics" },
+      { name: "Optics", category: "Physics" },
+      { name: "Electronics I with Lab", category: "Physics" },
+      { name: "Methods of Experimental Physics", category: "Physics" },
+      { name: "Statistical Mechanics I", category: "Physics" }
     ]
   },
   {
@@ -82,17 +48,51 @@ const semestersData = [
     ]
   },
   {
-    id: "sem-5",
-    label: "Semester 5",
-    tagline: "Electrodynamics, advanced quantum mechanics, optics & electronics",
-    status: "Ongoing",
+    id: "sem-3",
+    label: "Semester 3",
+    tagline: "Ecology, probability, quantum physics, inorganic chemistry & climate",
+    status: "Completed",
     courses: [
-      { name: "Electrodynamics I", category: "Physics" },
-      { name: "Quantum Mechanics I", category: "Physics" },
-      { name: "Optics", category: "Physics" },
-      { name: "Electronics I with Lab", category: "Physics" },
-      { name: "Methods of Experimental Physics", category: "Physics" },
-      { name: "Statistical Mechanics I", category: "Physics" }
+      { name: "Ecology and Evolution", category: "Biology" },
+      { name: "Principles of Inorganic Chemistry", category: "Chemistry" },
+      { name: "Introduction to Probability", category: "Math" },
+      { name: "Introductory Quantum Mechanics", category: "Physics" },
+      { name: "Introduction to Climate Science", category: "ECS" },
+      { name: "Introduction to HSS", category: "HSS" },
+      { name: "General Chemistry Practicals II", category: "Chemistry" },
+      { name: "Mathematical Methods for Physics", category: "Physics" }
+    ]
+  },
+  {
+    id: "sem-2",
+    label: "Semester 2",
+    tagline: "Biomolecules, physical chemistry, general labs, linear algebra & electives",
+    status: "Completed",
+    courses: [
+      { name: "Introduction to Biomolecules", category: "Biology" },
+      { name: "Principles of Physical Chemistry", category: "Chemistry" },
+      { name: "General Chemistry Practicals I", category: "Chemistry" },
+      { name: "The Solid Earth", category: "ECS" },
+      { name: "Science and Society", category: "HSS" },
+      { name: "Calculus II", category: "Math" },
+      { name: "Linear Algebra", category: "Math" },
+      { name: "Introductory Electricity & Magnetism", category: "Physics" }
+    ]
+  },
+  {
+    id: "sem-1",
+    label: "Semester 1",
+    tagline: "Foundational biology, chemistry, calculus, mechanics & labs",
+    status: "Completed",
+    courses: [
+      { name: "Introductory Biology", category: "Biology" },
+      { name: "Experimental Biology", category: "Biology" },
+      { name: "Principles of Organic Chemistry", category: "Chemistry" },
+      { name: "Evolution of Earth and Life", category: "ECS" },
+      { name: "Calculus I", category: "Math" },
+      { name: "Introductory Mechanics", category: "Physics" },
+      { name: "Physics Lab", category: "Physics" },
+      { name: "Introduction to Computing", category: "Transdisciplinary" }
     ]
   }
 ];
@@ -146,9 +146,9 @@ export default function IISER() {
       <section className="relative pt-20 pb-16">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90 flex items-center gap-3"
           >
             <MapPin size={12} strokeWidth={1.3} className="text-cyan-400" />
@@ -156,9 +156,9 @@ export default function IISER() {
           </motion.p>
           
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif-display text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight font-light text-slate-100 mt-6 max-w-5xl"
           >
             What IISER Pune
@@ -175,10 +175,10 @@ export default function IISER() {
           
           {/* Cover photo side */}
           <motion.div
-            initial={{ opacity: 0, scale: 1.02 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className="group/cover md:col-span-7 relative aspect-[16/10] overflow-hidden border border-white/10 bg-zinc-950 cursor-pointer"
           >
             <img
@@ -197,17 +197,23 @@ export default function IISER() {
           {/* Reflections blocks */}
           <div className="md:col-span-5">
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="font-serif-display italic text-2xl sm:text-3xl text-slate-200 leading-snug"
             >
               “Most days, that means reading, asking too many questions, getting stuck, and slowly learning how to think more clearly.”
             </motion.p>
-            <p className="text-slate-400 mt-6 leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="text-slate-400 mt-6 leading-relaxed"
+            >
               Living, thinking, and learning in a place filled with intense coursework, laboratory analysis, and late-night problem-solving session runs. It brings a unique sense of shared camaraderie when pursuing answers alongside classmates who are equally driven by intellectual curiosity.
-            </p>
+            </motion.p>
           </div>
 
         </div>
@@ -218,16 +224,34 @@ export default function IISER() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
             <div>
-              <p className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90 flex items-center gap-2">
+              <motion.p
+                initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90 flex items-center gap-2"
+              >
                 <GraduationCap size={12} className="text-cyan-400 animate-pulse" />
                 ✦ Coursework
-              </p>
-              <h2 className="font-serif-display text-4xl sm:text-5xl font-light text-slate-100 mt-4">
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="font-serif-display text-4xl sm:text-5xl font-light text-slate-100 mt-4"
+              >
                 Academics <span className="italic text-slate-400 font-light">so far.</span>
-              </h2>
-              <p className="text-slate-400 text-sm sm:text-base mt-4 leading-relaxed max-w-2xl">
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 12, filter: "blur(5px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="text-slate-400 text-sm sm:text-base mt-4 leading-relaxed max-w-2xl"
+              >
                 A chronicled breakdown of foundational modules, multidisciplinary experimental labs, and ongoing semester studies throughout my journey at IISER Pune.
-              </p>
+              </motion.p>
             </div>
 
             {/* Interactive Search Tool */}
@@ -278,7 +302,7 @@ export default function IISER() {
 
           {/* Semesters Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {semestersData.map((sem) => {
+            {semestersData.map((sem, semIdx) => {
               const coursesWithMatchFlags = sem.courses.map(course => {
                 const categoryMatches = selectedCategory === "All" || course.category === selectedCategory;
                 const searchMatches = searchQuery === "" || course.name.toLowerCase().includes(searchQuery.toLowerCase()) || course.category.toLowerCase().includes(searchQuery.toLowerCase());
@@ -295,10 +319,10 @@ export default function IISER() {
               return (
                 <motion.div
                   key={sem.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
+                  initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.7, delay: (semIdx % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   className={`border transition-all duration-500 bg-[#060608]/50 p-6 sm:p-8 flex flex-col justify-between hover:bg-[#08080c]/80 rounded ${
                     sem.status === "Ongoing"
                       ? 'border-cyan-400/20 shadow-[0_0_15px_rgba(34,211,238,0.02)]'
@@ -377,15 +401,33 @@ export default function IISER() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12">
             <div className="max-w-3xl">
-              <p className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90">
+              <motion.p
+                initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="font-mono-tag text-[10px] tracking-[0.3em] uppercase text-cyan-400/90"
+              >
                 ✦ Outside the classroom
-              </p>
-              <h2 className="font-serif-display text-4xl sm:text-5xl font-light text-slate-100 mt-4">
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="font-serif-display text-4xl sm:text-5xl font-light text-slate-100 mt-4"
+              >
                 A campus you can keep <span className="italic text-slate-400 font-light">wandering through.</span>
-              </h2>
-              <p className="text-slate-400 text-sm sm:text-base mt-6 leading-relaxed">
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 12, filter: "blur(5px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="text-slate-400 text-sm sm:text-base mt-6 leading-relaxed"
+              >
                 What makes IISER Pune special to me isn’t just the lectures or labs, it’s the energy of the student community. I’ve been fortunate to be part of several initiatives that reflect not just my academic interests, but also my creative and collaborative side.
-              </p>
+              </motion.p>
             </div>
 
             {isEditing && (
@@ -456,6 +498,17 @@ export default function IISER() {
                             value={m.title}
                             onChange={(e) => updateMoment(i, 'title', e.target.value)}
                             className="font-serif-display text-base text-white bg-zinc-900 border border-white/5 rounded p-2 w-full focus:outline-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[8px] font-mono-tag text-zinc-500 uppercase tracking-widest mb-1.5 font-semibold">Website / Social Link (Optional)</label>
+                          <input
+                            type="text"
+                            value={m.link || ''}
+                            onChange={(e) => updateMoment(i, 'link', e.target.value)}
+                            placeholder="https://..."
+                            className="font-mono text-[10px] text-cyan-300 bg-zinc-900 border border-white/5 rounded p-2 w-full focus:outline-none"
                           />
                         </div>
 
@@ -613,104 +666,108 @@ export default function IISER() {
               })}
             </div>
           ) : (
-            <div className="relative mt-16 sm:mt-24">
-              {/* Timeline Track Lines (Vertical line down the page) */}
-              <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-gradient-to-b from-cyan-400 via-purple-500/40 via-cyan-500/20 to-transparent pointer-events-none z-10" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-16">
+              {data.moments.map((m, i) => {
+                const iconKey = m.iconName in iconMap ? m.iconName : 'Users';
+                const Icon = iconMap[iconKey];
+                const currentYearIdx = selectedYearMap[i] ?? 0;
+                const currentYearObj = m.years?.[currentYearIdx];
+                const displayImg = currentYearObj?.img || m.img;
 
-              <div className="space-y-16 md:space-y-24 relative">
-                {data.moments.map((m, i) => {
-                  const iconKey = m.iconName in iconMap ? m.iconName : 'Users';
-                  const Icon = iconMap[iconKey];
-                  const currentYearIdx = selectedYearMap[i] ?? 0;
-                  const currentYearObj = m.years?.[currentYearIdx];
-                  const displayImg = currentYearObj?.img || m.img;
-                  const isEven = i % 2 === 0;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 25, filter: "blur(6px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    data-testid={`iiser-moment-${m.title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
+                    className="bg-[#050505] hover:bg-[#0c0c0e]/90 border border-white/5 hover:border-cyan-400/25 transition-all duration-500 rounded-lg overflow-hidden flex flex-col shadow-xl hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] group h-full relative"
+                  >
+                    {/* Top glowing bar on hover */}
+                    <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)] transition-all duration-300 z-10" />
 
-                  return (
-                    <div
-                      key={i}
-                      className={`relative flex flex-col md:flex-row items-stretch gap-8 md:gap-12 w-full ${
-                        isEven ? 'md:flex-row' : 'md:flex-row-reverse'
-                      }`}
-                    >
-                      {/* Central/Left Glowing Icon circle */}
-                      <div className="absolute left-6 md:left-1/2 top-10 md:top-12 w-10 h-10 rounded-full bg-[#050505] border border-cyan-400/40 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-cyan-400 z-20 shadow-[0_0_12px_rgba(34,211,238,0.15)] md:group-hover:border-cyan-400 md:group-hover:text-cyan-300 md:group-hover:scale-110 transition-all duration-300">
-                        <Icon size={16} strokeWidth={1.8} className="animate-pulse-subtle" />
+                    {/* Image Header */}
+                    {displayImg ? (
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-950 border-b border-white/5">
+                        <img
+                          src={displayImg}
+                          alt={`${m.title}`}
+                          className={`w-full h-full object-cover transition-all duration-[1000ms] grayscale-[30%] group-hover:grayscale-0 brightness-[75%] group-hover:brightness-[90%] scale-100 group-hover:scale-[1.03] ${
+                            (m.title.toLowerCase().includes('ikl') || m.title.toLowerCase().includes('kho') || (displayImg && displayImg.toLowerCase().includes('ikl'))) ? 'object-[center_15%]' : 'object-center'
+                          }`}
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/10 to-transparent opacity-90 pointer-events-none" />
                       </div>
+                    ) : (
+                      <div className="relative aspect-[16/10] bg-zinc-900/30 border-b border-white/5 flex flex-col items-center justify-center p-4 text-center group-hover:bg-zinc-800/20 transition-colors duration-500">
+                        <div className="w-10 h-10 rounded-full border border-dashed border-white/10 flex items-center justify-center text-zinc-650 group-hover:border-cyan-400/20 group-hover:text-cyan-400/80 transition-all duration-300">
+                          <Image size={16} strokeWidth={1.3} />
+                        </div>
+                      </div>
+                    )}
 
-                      {/* Content Card Side */}
-                      <motion.div
-                        initial={{ opacity: 0, x: isEven ? -45 : 45, y: 15 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        data-testid={`iiser-moment-${m.title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
-                        className={`w-full md:w-[calc(50%-2.5rem)] pl-16 md:pl-0 bg-[#050505] hover:bg-[#0c0c0e]/90 border border-white/5 hover:border-cyan-400/25 transition-all duration-500 rounded-lg overflow-hidden flex flex-col shadow-xl hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] group`}
-                      >
-                        {/* 1. Header Area: Image banner or placeholder */}
-                        {displayImg ? (
-                          <div className="relative aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden bg-zinc-950 border-b border-white/5">
-                            <img
-                              src={displayImg}
-                              alt={`${m.title}`}
-                              className="w-full h-full object-cover transition-all duration-[1000ms] grayscale-[30%] group-hover:grayscale-0 brightness-[75%] group-hover:brightness-[90%] scale-100 group-hover:scale-[1.03]"
-                              referrerPolicy="no-referrer"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/10 to-transparent opacity-90 pointer-events-none" />
-                          </div>
-                        ) : (
-                          <div className="relative aspect-[21/8] bg-zinc-900/30 border-b border-white/5 flex flex-col items-center justify-center p-4 text-center group-hover:bg-zinc-800/20 transition-colors duration-500">
-                            <div className="w-8 h-8 rounded-full border border-dashed border-white/10 flex items-center justify-center text-zinc-600 group-hover:border-cyan-400/20 group-hover:text-cyan-400/80 transition-all duration-300">
-                              <Image size={14} strokeWidth={1.3} />
-                            </div>
+                    {/* Content Section */}
+                    <div className="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+                      <div className="flex flex-col justify-between h-full">
+                        {/* Interactive Pill Tabs for years/editions if present */}
+                        {m.years && m.years.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mb-5 border-b border-white/5 pb-4">
+                            {m.years.map((y, yIdx) => (
+                              <button
+                                key={yIdx}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setSelectedYearMap(prev => ({ ...prev, [i]: yIdx }));
+                                }}
+                                className={`px-2.5 py-0.5 rounded text-[8px] font-mono-tag tracking-wider uppercase transition-all duration-300 ${
+                                  currentYearIdx === yIdx
+                                    ? 'bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 font-medium'
+                                    : 'bg-zinc-900/60 border border-transparent text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800'
+                                }`}
+                              >
+                                {y.year}
+                              </button>
+                            ))}
                           </div>
                         )}
 
-                        {/* 2. Content Area */}
-                        <div className="p-6 sm:p-8 flex-grow flex flex-col justify-between">
-                          <div className="flex flex-col justify-between h-full">
-                            {/* Interactive Pill Tabs for years if present */}
-                            {m.years && m.years.length > 0 && (
-                              <div className="flex flex-wrap gap-1 mb-5 border-b border-white/5 pb-4">
-                                {m.years.map((y, yIdx) => (
-                                  <button
-                                    key={yIdx}
-                                    onClick={() => setSelectedYearMap(prev => ({ ...prev, [i]: yIdx }))}
-                                    className={`px-2 py-0.5 rounded text-[8px] font-mono-tag tracking-wider uppercase transition-all duration-300 ${
-                                      currentYearIdx === yIdx
-                                        ? 'bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 font-medium'
-                                        : 'bg-zinc-900/60 border border-transparent text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800'
-                                    }`}
-                                  >
-                                    {y.year}
-                                  </button>
-                                ))}
-                              </div>
-                            )}
-
-                            <div>
-                              <div className="flex items-center gap-2 mb-2">
-                                <span className="font-mono-tag text-[8px] text-cyan-400/80 tracking-[0.2em] uppercase">
-                                  ✦ {m.years ? currentYearObj?.year || 'EDITION' : 'CAMPUS ACTIVITY'}
-                                </span>
-                              </div>
-                              <h3 className="font-serif-display text-2xl sm:text-3xl font-light text-slate-100 group-hover:text-cyan-300 transition-colors duration-300 mb-4 tracking-tight leading-none">
-                                {m.title}
-                              </h3>
-                              <p className="text-slate-400 leading-relaxed text-sm sm:text-base font-light">
-                                {m.years ? currentYearObj?.body : m.body}
-                              </p>
+                        <div className="flex flex-col justify-between h-full flex-grow">
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <Icon size={12} className="text-cyan-400/80" />
+                              <span className="font-mono-tag text-[8px] text-cyan-400/80 tracking-[0.2em] uppercase">
+                                ✦ {m.years ? currentYearObj?.year || 'EDITION' : 'CAMPUS ACTIVITY'}
+                              </span>
                             </div>
+                            <h3 className="font-serif-display text-xl sm:text-2xl font-light text-slate-100 group-hover:text-cyan-300 transition-colors duration-300 mb-3 tracking-tight leading-snug">
+                              {m.title}
+                            </h3>
+                            <p className="text-slate-400 leading-relaxed text-xs sm:text-sm font-light">
+                              {m.years ? currentYearObj?.body : m.body}
+                            </p>
                           </div>
-                        </div>
-                      </motion.div>
 
-                      {/* Spacer for the other side on desktop */}
-                      <div className="hidden md:block md:w-[calc(50%-2.5rem)]" />
+                          {m.link && (
+                            <div className="mt-5 pt-4 border-t border-white/5 flex justify-end">
+                              <a
+                                href={m.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-[10px] font-mono-tag text-cyan-400 hover:text-cyan-300 uppercase tracking-wider group/link transition-colors duration-300"
+                              >
+                                Explore Initiative
+                                <ExternalLink size={10} className="transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300 text-cyan-400" />
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </motion.div>
+                );
+              })}
             </div>
           )}
         </div>
