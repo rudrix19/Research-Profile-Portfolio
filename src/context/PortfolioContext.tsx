@@ -295,8 +295,39 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('portfolio_data', JSON.stringify(data));
   }, [data]);
 
+  const resolveAsset = (url: string | undefined): string | undefined => {
+    if (!url) return url;
+    if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:")) {
+      return url;
+    }
+    const base = import.meta.env.BASE_URL || "/";
+    if (base !== "/" && url.startsWith(base)) {
+      return url;
+    }
+    const cleanUrl = url.startsWith("/") ? url.slice(1) : url;
+    return base.endsWith("/") ? `${base}${cleanUrl}` : `${base}/${cleanUrl}`;
+  };
+
+  const resolvedData = {
+    ...data,
+    profileImg: resolveAsset(data.profileImg || "/me.png"),
+    cvUrl: resolveAsset(data.cvUrl),
+    projects: data.projects.map((p) => ({
+      ...p,
+      img: resolveAsset(p.img),
+    })),
+    moments: data.moments.map((m) => ({
+      ...m,
+      img: resolveAsset(m.img),
+      years: m.years?.map((y) => ({
+        ...y,
+        img: resolveAsset(y.img),
+      })),
+    })),
+  };
+
   return (
-    <PortfolioContext.Provider value={{ data, setData, isEditing, setIsEditing, resetToDefault }}>
+    <PortfolioContext.Provider value={{ data: resolvedData, setData, isEditing, setIsEditing, resetToDefault }}>
       {children}
     </PortfolioContext.Provider>
   );
