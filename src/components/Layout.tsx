@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation, useOutlet } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import StarField from './StarField';
+import AfterEffectsOverlay from './AfterEffectsOverlay';
 
 export default function Layout() {
   const loc = useLocation();
+  const currentOutlet = useOutlet();
 
   useEffect(() => {
     window.scrollTo({
@@ -22,12 +25,25 @@ export default function Layout() {
       {/* Dynamic Star Overlay Canvas */}
       <StarField />
 
+      {/* After Effects Visual FX Layer (Spotlight, Light Leaks, Anamorphic Lens Flare, Click Shockwaves) */}
+      <AfterEffectsOverlay />
+
       {/* Main Top Navigation Headless Bar */}
       <Navbar />
 
-      {/* Primary Page Layout Sections */}
-      <main className="relative z-10 pt-16">
-        <Outlet />
+      {/* Primary Page Layout Sections with Cinematic Blur-Fade Transitions */}
+      <main className="relative pt-16">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={loc.pathname}
+            initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -16, filter: 'blur(6px)' }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {currentOutlet}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Main Footer Block */}
@@ -35,3 +51,4 @@ export default function Layout() {
     </div>
   );
 }
+

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -23,7 +23,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <HashRouter>
+            <BrowserRouter>
               <Routes>
                 <Route element={<Layout />}>
                   <Route path="/" element={<Home />} />
@@ -31,7 +31,7 @@ export default function App() {
                   <Route path="/iiser" element={<IISER />} />
                 </Route>
               </Routes>
-            </HashRouter>
+            </BrowserRouter>
           </motion.div>
         )}
       </AnimatePresence>

@@ -4,6 +4,7 @@ import { MapPin, Users, BookOpen, Activity, Sparkles, Atom, Orbit, Telescope, Pl
 import { usePortfolio } from '../context/PortfolioContext';
 import { Moment } from '../types';
 import ImageUpload from '../components/ImageUpload';
+import Parallax, { MouseParallax } from '../components/Parallax';
 
 const iconMap = {
   Users,
@@ -144,7 +145,7 @@ export default function IISER() {
     <div data-testid="iiser-page">
       {/* Header section with Map Marker */}
       <section className="relative pt-20 pb-16">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
+        <Parallax speed={0.1} offset={30} className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
           <motion.p
             initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -166,7 +167,7 @@ export default function IISER() {
             <span className="italic text-slate-400">has been like</span>
             <span className="text-cyan-400">.</span>
           </motion.h1>
-        </div>
+        </Parallax>
       </section>
 
       {/* Main Reflections Column with Cover Block */}
@@ -174,28 +175,30 @@ export default function IISER() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
           
           {/* Cover photo side */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="group/cover md:col-span-7 relative aspect-[16/10] overflow-hidden border border-white/10 bg-zinc-950 cursor-pointer"
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Front_view_of_main_building%2C_IISER_Pune.jpg/1280px-Front_view_of_main_building%2C_IISER_Pune.jpg"
-              alt="IISER Pune Campus View"
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-out-back grayscale-[35%] brightness-[70%] group-hover/cover:grayscale-0 group-hover/cover:brightness-[90%] group-hover/cover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90 transition-opacity duration-500 group-hover/cover:opacity-75" />
-            {/* Soft border accent */}
-            <div className="absolute inset-0 border border-transparent group-hover/cover:border-cyan-400/20 transition-all duration-500 pointer-events-none" />
-            <p className="absolute bottom-4 left-4 font-mono-tag text-[10px] tracking-[0.3em] uppercase text-slate-300 group-hover/cover:text-cyan-300 transition-colors duration-300">
-              Pashan, Pune · 411008
-            </p>
-          </motion.div>
+          <MouseParallax intensity={8} className="md:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              className="group/cover relative aspect-[16/10] overflow-hidden border border-white/10 bg-zinc-950 cursor-pointer rounded-2xl shadow-2xl"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Front_view_of_main_building%2C_IISER_Pune.jpg/1280px-Front_view_of_main_building%2C_IISER_Pune.jpg"
+                alt="IISER Pune Campus View"
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-out-back grayscale-[35%] brightness-[70%] group-hover/cover:grayscale-0 group-hover/cover:brightness-[90%] group-hover/cover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90 transition-opacity duration-500 group-hover/cover:opacity-75" />
+              {/* Soft border accent */}
+              <div className="absolute inset-0 border border-transparent group-hover/cover:border-cyan-400/20 transition-all duration-500 pointer-events-none" />
+              <p className="absolute bottom-4 left-4 font-mono-tag text-[10px] tracking-[0.3em] uppercase text-slate-300 group-hover/cover:text-cyan-300 transition-colors duration-300">
+                Pashan, Pune · 411008
+              </p>
+            </motion.div>
+          </MouseParallax>
 
           {/* Reflections blocks */}
-          <div className="md:col-span-5">
+          <Parallax speed={0.06} offset={20} className="md:col-span-5">
             <motion.p
               initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -210,11 +213,11 @@ export default function IISER() {
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="text-slate-400 mt-6 leading-relaxed"
+              className="text-slate-300 mt-6 leading-relaxed text-base sm:text-lg font-light"
             >
               Living, thinking, and learning in a place filled with intense coursework, laboratory analysis, and late-night problem-solving session runs. It brings a unique sense of shared camaraderie when pursuing answers alongside classmates who are equally driven by intellectual curiosity.
             </motion.p>
-          </div>
+          </Parallax>
 
         </div>
       </section>
@@ -248,7 +251,7 @@ export default function IISER() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-slate-400 text-sm sm:text-base mt-4 leading-relaxed max-w-2xl"
+                className="text-slate-300 text-base sm:text-lg mt-4 leading-relaxed max-w-2xl font-light"
               >
                 A chronicled breakdown of foundational modules, multidisciplinary experimental labs, and ongoing semester studies throughout my journey at IISER Pune.
               </motion.p>
@@ -424,7 +427,7 @@ export default function IISER() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-slate-400 text-sm sm:text-base mt-6 leading-relaxed"
+                className="text-slate-300 text-base sm:text-lg mt-6 leading-relaxed font-light"
               >
                 What makes IISER Pune special to me isn’t just the lectures or labs, it’s the energy of the student community. I’ve been fortunate to be part of several initiatives that reflect not just my academic interests, but also my creative and collaborative side.
               </motion.p>
@@ -675,15 +678,15 @@ export default function IISER() {
                 const displayImg = currentYearObj?.img || m.img;
 
                 return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 25, filter: "blur(6px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    data-testid={`iiser-moment-${m.title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
-                    className="bg-[#050505] hover:bg-[#0c0c0e]/90 border border-white/5 hover:border-cyan-400/25 transition-all duration-500 rounded-lg overflow-hidden flex flex-col shadow-xl hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] group h-full relative"
-                  >
+                  <MouseParallax key={i} intensity={8}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 25, filter: "blur(6px)" }}
+                      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.8, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                      data-testid={`iiser-moment-${m.title.toLowerCase().replace(/[^a-z]+/g, "-")}`}
+                      className="bg-[#050505] hover:bg-[#0c0c0e]/90 border border-white/5 hover:border-cyan-400/25 transition-all duration-500 rounded-lg overflow-hidden flex flex-col shadow-xl hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] group h-full relative"
+                    >
                     {/* Top glowing bar on hover */}
                     <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)] transition-all duration-300 z-10" />
 
@@ -744,7 +747,7 @@ export default function IISER() {
                             <h3 className="font-serif-display text-xl sm:text-2xl font-light text-slate-100 group-hover:text-cyan-300 transition-colors duration-300 mb-3 tracking-tight leading-snug">
                               {m.title}
                             </h3>
-                            <p className="text-slate-400 leading-relaxed text-xs sm:text-sm font-light">
+                            <p className="text-slate-300 leading-relaxed text-sm sm:text-base font-light">
                               {m.years ? currentYearObj?.body : m.body}
                             </p>
                           </div>
@@ -766,6 +769,7 @@ export default function IISER() {
                       </div>
                     </div>
                   </motion.div>
+                </MouseParallax>
                 );
               })}
             </div>
